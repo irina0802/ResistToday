@@ -22,19 +22,14 @@ import './main.html';
 // });
 
 Template.navBar.events({
-  'click #myButton': function(event, template) {
-    event.preventDefault();  
-    Router.go('anotherpath');
+  'click #about': function(event, template){
+  	event.preventDefault();
+  	document.querySelector('#title').innerHTML = "About";
+  	document.querySelector('main').style.background = "lightpink";
+  	document.querySelector('main').style.opacity = 1;
+  	document.querySelector('#title').style.fontSize = "20px";
+  	document.querySelector('#title').style.margin = "40px"
   }
 });
 
-Router.map(function() {
-  this.route('anotherpath', {
-    path: 'about.html',
-
-    layoutTemplate: 'myLayout',
-
-    controller: myController
-  });
-});
 
