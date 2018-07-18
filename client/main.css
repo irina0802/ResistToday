@@ -51,3 +51,9 @@ h1{
 #words{
 	font-size: 12px;
 }
+
+#signin{
+	float: right;
+	width: 70px;
+	height: 25px;
+}

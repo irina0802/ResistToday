@@ -3,10 +3,12 @@
 </head>
 
 <body>
+
   <nav>
     {{> navBar}}
   </nav>
   <main>
+    <button id="signin">Sign In</button>
     <h1>Resist Today</h1>
     <p id = "title"> Our Mission: </p>
     <div id = "words">
@@ -17,9 +19,9 @@
 </body>
 
 <template name="navBar">
-  <div class = "button" onclick="location.href='main.html'" type = "button" >Home</div>
+  <div class = "button" type = "button" >Home</div>
   <div class = "button" id="about" type = "button" >About</div>
   <div class = "button" id="find" type = "button">Find A Protest</div>
-  <div class = "button" id="organize" type = "button">Start Organizing</div>  
+  <div class = "button" id="organize" type = "button">Organizing</div>  
   <div class = "button" id="donate" type = "button">Donate</div>
 </template>
