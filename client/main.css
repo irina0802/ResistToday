@@ -8,22 +8,23 @@ nav{
 	padding: none;
 }
 
-button{
+.button{
 	height: 50px;
 	width: 100%;
 	background-color: grey;
 	border: none;
-	margin: 20px 0px;
+	margin: 20px auto;
 	font-size: 18px;
 	color: white;
+	text-align: center;
 }
 
-button:hover{
+.button:hover{
 	color: blue;
 }
 
-p{
-	font-size: 12px;
+#title{
+	font-size: 14px;
 }
 
 main{
@@ -45,4 +46,8 @@ h1{
 	font-family: Impact;
 	font-size: 50px;
 	margin-right: 40px;
+}
+
+#words{
+	font-size: 12px;
 }
