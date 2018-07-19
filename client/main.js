@@ -2,9 +2,22 @@ import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 
 import './main.html';
+import { Accounts } from 'meteor/accounts-base';
+
+import { Protests } from '../imports/api/tasks.js'
+ 
+Accounts.ui.config({
+  passwordSignupFields: 'USERNAME_ONLY',
+});
 
 var CssTitle = "font-size:40px; margin:30px;"
 var CssWords = "font-size: 16px; margin: 10px 30px;"
+
+Template.body.helpers({
+  todos() {
+    return Protests.find({});
+  }
+});
 
 Template.body.events({
   'click #about': function(event, template){
@@ -32,15 +45,11 @@ Template.body.events({
   },
   'click #organize': function(event,template){
   	event.preventDefault();
-  	import '../imports/ui/body.js';
+    console.log(template);
   	document.querySelector('main').style.opacity = 1;
     document.querySelector('main').style.background = "powderblue";
-    var protestInfo = Blaze.toHTML('{{#each todos}}{{> info}}{{/each}}');
   	document.querySelector('#title').innerHTML = "Organize your protest";
-  	document.querySelector('#words').innerHTML = '<header> <form class="protests"> <input type="text" class="date" placeholder="enter the date" /> <input type="text" class="location" placeholder="enter the location" /> <input type="text" class="cause" placeholder="enter the cause" /> <button type="submit"> Create </button> </form> </header> <ul> ' + protestInfo + '</ul>';
-    var protestInfo = Blaze.toHTML('#each todos > info /each');
-    var createProtest = document.querySelector('#info');
-    Blaze.render(' <li>Protest at {{location}} on {{date}} for {{cause}}</li> ', createProtest);
+  	document.querySelector('#words').innerHTML = '<header> <form class="protests"> <input type="text" class="date" placeholder="enter the date" /> <input type="text" class="location" placeholder="enter the location" /> <input type="text" class="cause" placeholder="enter the cause" /> <button type="submit"> Create </button> </form> </header>';
   },
   'click #donate': function(event,template){
     event.preventDefault();
@@ -50,7 +59,20 @@ Template.body.events({
     document.querySelector('main').style.background = "powderblue";  
     document.querySelector('main').style.opacity = 1;
     document.querySelector('#words').innerHTML = "<p> We at Resist Today appreciate whatever you can contribute to help us continue running this website and keep you informed about the protests that are occurring. We hope that you continue to support us and our website. </p> <input type='text' placeholder='enter an amount' />"
-  }
+  },
+  'submit .protests'(event, template) {
+    event.preventDefault();
+    console.log('hi');
+    var location = template.find('.location').value;
+    var date = template.find('.date').value;
+    var cause = template.find('.cause').value;
+    Protests.insert({
+      location: location,
+      date: date,
+      cause: cause,
+    });
+
+    }
 });
 
 // import '../imports/ui/body.js';

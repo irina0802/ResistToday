@@ -1,3 +1,3 @@
-// import { Mongo } from 'meteor/mongo';
+import { Mongo } from 'meteor/mongo';
  
-// export const Tasks = new Mongo.Collection('tasks');
+export const Protests = new Mongo.Collection('protests');
