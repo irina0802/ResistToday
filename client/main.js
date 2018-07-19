@@ -40,6 +40,7 @@ Template.body.events({
   },
   'click #brooklyn': function(event,template){
   	event.preventDefault();
+
   	document.querySelector('#brooklyn').background = blue;
   	document.querySelector('main').style.background ="";
   },
