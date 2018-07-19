@@ -12,13 +12,13 @@
       {{> loginButtons}}
     </div>
     <h1>Resist Today</h1>
-    <!-- <div class=" aclearbackground"> -->
-      <p id = "title"> Our Mission: </p>
-      <div id = "words">
-      <p>Resist Today is a website that was created on July 16, 2018. The three founders, Irina, Gabrielle, and Gabriella, wanted to create a place where activists could organize protests.</p>
-     <p>In our time, we have seen our elected officials fail us. We wanted to provide a platform where people could take change into their own hands, from abortion rights to gun laws. We would like to give everybody the ability to <b>resist</b>.</p> 
-      </div>
-    <!-- </div> -->
+    <p id = "title"> Our Mission: </p>
+    <div id = "words">
+    <p>Resist Today is a website that was created on July 16, 2018. The three founders, Irina, Gabrielle, and Gabriella, wanted to create a place where activists could organize protests.</p>
+    <p>In our time, we have seen our elected officials fail us. We wanted to provide a platform where people could take change into their own hands, from abortion rights to gun laws. We would like to give everybody the ability to <b>resist</b>.</p> 
+    </div>
+    <div id = "protest"> </div>
+>>>>>>> stuff
     <ul>
       {{#each todos}}
         {{> info}}
@@ -28,7 +28,8 @@
 </body>
 
 <template name="info">
-  <li>Protest at {{location}} on {{date}} for {{cause}}</li>
+  <button class="delete">&times;</button>
+  <li>Protest in {{location}} on {{date}} for {{cause}}</li>
 </template>
 <template name="navBar">
   <div class = "button" type = "button"  onclick="location.href='main.html'">Home</div>
@@ -40,4 +41,21 @@
   <div class = "button" id="signup" type = "button">Sign Up</div>  
 >>>>>>> combination of things and more things
   <div class = "button" id="donate" type = "button">Donate</div>
+  {{#if currentUser}}
+  <div class = "button" id="donate" type = "button">My Account</div>
+  {{/if}}
+</template>
+
+<template name="newform">
+  Please sign in to be able to create your own protest.
+  {{#if currentUser}}
+  <header>
+    <form class="protests">
+      <input type="text" class="date" placeholder="enter the date" />
+      <input type="text" class="location" placeholder="enter the borough" />
+      <input type="text" class="cause" placeholder="enter the cause" />
+      <button type="submit"> Create </button>
+    </form>
+  </header>
+  {{/if}}
 </template>

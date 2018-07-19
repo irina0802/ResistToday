@@ -5,7 +5,7 @@ import './main.html';
 import { Accounts } from 'meteor/accounts-base';
 
 import { Protests } from '../imports/api/tasks.js'
- 
+console.log(Protests)
 Accounts.ui.config({
   passwordSignupFields: 'USERNAME_ONLY',
 });
@@ -37,15 +37,15 @@ Template.body.events({
   	event.preventDefault();
   	document.querySelector('#title').innerHTML = "Find A Protest Near You";
   	document.querySelector('main').style.background = "purple";
-  	document.querySelector('#words').innerHTML = "<p>Select a borough:</p> <button id = 'brooklyn'>Brooklyn</button> <button id='bronx'>Bronx</button> <button id='manhattan'>Manhattan</button> <button id='statenisland'>Staten Island</button> <button id='queens'>Queens</button>";
+  	document.querySelector('#words').innerHTML = "<p>Select a borough:</p> <button id = 'brooklyn'>Brooklyn</button> <div id = 'brooklynProtest'></div> <button id='bronx'>Bronx</button> <div id='bronxProtest'> </div> <button id='manhattan'>Manhattan</button><div id='manhattanProtest'> </div> <button id='statenisland'>Staten Island</button><div id='siProtest'> </div> <button id='queens'>Queens</button> <div id = 'queensProtest'> </div>";
+>>>>>>> stuff
   	document.querySelector('#title').style.cssText = CssTitle;
   	document.querySelector('#words').style.cssText = CssWords;
   	document.querySelector('main').style.opacity = 1;
   },
   'click #brooklyn': function(event,template){
   	event.preventDefault();
-
-  	document.querySelector('#brooklyn').background = blue;
+  	document.querySelector('#brooklynProtest').
   	document.querySelector('main').style.background ="";
   },
   'click #organize': function(event,template){
@@ -53,8 +53,10 @@ Template.body.events({
     console.log(template);
   	document.querySelector('main').style.opacity = 1;
   	document.querySelector('#title').innerHTML = "Organize your protest";
-  	document.querySelector('#words').innerHTML = '<header> <form class="protests"> <input type="text" class="date" placeholder="enter the date" /> <input type="text" class="location" placeholder="enter the location" /> <input type="text" class="cause" placeholder="enter the cause" /> <button type="submit"> Create </button> </form> </header>';
   	document.querySelector('main').style.background ="white";
+=======
+  	document.querySelector('#words').innerHTML = Blaze.toHTML(Template.newform);
+>>>>>>> stuff
   },
   'click #signup': function(event,template){
     event.preventDefault();
@@ -77,8 +79,10 @@ Template.body.events({
       date: date,
       cause: cause,
     });
-
-    }
+    },
+    'click .delete'() {
+    Protests.remove(this._id);
+  },
 });
 
-// import '../imports/ui/body.js';
+
