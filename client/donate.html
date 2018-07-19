@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+	<head>
+		<title></title>
+		<link type="text/css" rel="stylesheet" href="donatestyle.css">
+		<script type="text/javascript" src="donatescript.js"></script>
+	</head>
+<body>
+	<div class="contianer">
+		<nav>
+			<button  onclick="location.href='body.html'" type = "button"> 
+			Home </button>
+			<button onclick="location.href='about.html'" type = "button"> 
+			About </button>
+			<button onclick="location.href='find.html'" type = "button">
+			Find A Protest</button>
+			<button onclick="location.href='signup.html'" type = "button">
+			Sign Up</button>  
+			<button onclick="location.href='donate.html'" type = "button">
+			Donate</button>
+		</nav>
+		<main>
+			<h1 id = "heading"> Resist Today </h1>
+				<button onclick="myFunction()">Donate</button>
+
+				<p id="demo"></p>
+
+				<script>
+				function myFunction() {
+    				var amt = prompt("Please enter the amount you are donating", "");
+    				if (amt != null) {
+        				document.getElementById("demo").innerHTML =
+        				"Thank you for donating " + amt + " to Resist Today.";
+    				}
+				}
+				</script>
+			</div>
+		</main>
+	</div>
+</body>
+</html>
