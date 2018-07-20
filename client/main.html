@@ -18,8 +18,7 @@
     <p>In our time, we have seen our elected officials fail us. We wanted to provide a platform where people could take change into their own hands, from abortion rights to gun laws. We would like to give everybody the ability to <b>resist</b>.</p> 
     </div>
     <div id = "protest"> </div>
->>>>>>> stuff
-    <ul>
+    <ul id="allProtests">
       {{#each todos}}
         {{> info}}
       {{/each}}
@@ -29,17 +28,13 @@
 
 <template name="info">
   <button class="delete">&times;</button>
-  <li>Protest in {{location}} on {{date}} for {{cause}}</li>
+  <li class ="{{location}} protestItem">Protest in {{location}} on {{date}} for {{cause}}</li>
 </template>
 <template name="navBar">
   <div class = "button" type = "button"  onclick="location.href='main.html'">Home</div>
   <div class = "button" id="about" type = "button" >About</div>
   <div class = "button" id="find" type = "button">Find A Protest</div>
-<<<<<<< HEAD
   <div class = "button" id="organize" type = "button">Organizing</div>  
-=======
-  <div class = "button" id="signup" type = "button">Sign Up</div>  
->>>>>>> combination of things and more things
   <div class = "button" id="donate" type = "button">Donate</div>
   {{#if currentUser}}
   <div class = "button" id="donate" type = "button">My Account</div>
@@ -58,4 +53,8 @@
     </form>
   </header>
   {{/if}}
+</template>
+
+<template name = "brooklyn">
+  if 
 </template>

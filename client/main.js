@@ -22,6 +22,7 @@ Template.body.helpers({
 Template.body.events({
   'click #about': function(event, template){
   	event.preventDefault();
+    document.querySelector('#allProtests').style.display = "none";
   	document.querySelector('#title').innerHTML = "About";
     document.querySelector('main').style.cssText= "background-color: none";
   	document.querySelector('main').style.cssText = "background-image: url('aboutbackground.jpg');"
@@ -35,32 +36,63 @@ Template.body.events({
   },
   'click #find': function(event, template){
   	event.preventDefault();
+    document.querySelector('#allProtests').style.display = "none";
   	document.querySelector('#title').innerHTML = "Find A Protest Near You";
   	document.querySelector('main').style.background = "purple";
   	document.querySelector('#words').innerHTML = "<p>Select a borough:</p> <button id = 'brooklyn'>Brooklyn</button> <div id = 'brooklynProtest'></div> <button id='bronx'>Bronx</button> <div id='bronxProtest'> </div> <button id='manhattan'>Manhattan</button><div id='manhattanProtest'> </div> <button id='statenisland'>Staten Island</button><div id='siProtest'> </div> <button id='queens'>Queens</button> <div id = 'queensProtest'> </div>";
->>>>>>> stuff
   	document.querySelector('#title').style.cssText = CssTitle;
   	document.querySelector('#words').style.cssText = CssWords;
   	document.querySelector('main').style.opacity = 1;
   },
   'click #brooklyn': function(event,template){
   	event.preventDefault();
-  	document.querySelector('#brooklynProtest').
-  	document.querySelector('main').style.background ="";
+    var brooklynProtests = document.querySelectorAll('.brooklyn');
+    for (var protest of brooklynProtests) {
+      document.querySelector('#brooklynProtest').innerHTML += "<p>" + protest.innerHTML + "</p>";
+    }
+  },
+  'click #bronx': function(event,template){
+    event.preventDefault();
+    var bronxProtests = document.querySelectorAll('.bronx');
+    for (var protest of bronxProtests) {
+      document.querySelector('#bronxProtest').innerHTML += "<p>" + protest.innerHTML + "</p>";
+    }
+  },
+  'click #manhattan': function(event,template){
+    event.preventDefault();
+    var manhattanProtests = document.querySelectorAll('.manhattan');
+    for (var protest of manhattanProtests) {
+      document.querySelector('#manhattanProtest').innerHTML += "<p>" + protest.innerHTML + "</p>";
+    }
+  },
+  'click #queens': function(event,template){
+    event.preventDefault();
+    var queensProtests = document.querySelectorAll('.queens');
+    for (var protest of queensProtests) {
+      document.querySelector('#queensProtest').innerHTML += "<p>" + protest.innerHTML + "</p>";
+    }
+  },
+  'click #statenisland': function(event,template){
+    event.preventDefault();
+    var siProtests = document.querySelectorAll('.statenisland');
+    for (var protest of siProtests) {
+      document.querySelector('#siProtest').innerHTML += "<p>" + protest.innerHTML + "</p>";
+    }
   },
   'click #organize': function(event,template){
   	event.preventDefault();
     console.log(template);
+    document.querySelector('#allProtests').style.display = "block";
   	document.querySelector('main').style.opacity = 1;
   	document.querySelector('#title').innerHTML = "Organize your protest";
   	document.querySelector('main').style.background ="white";
-=======
   	document.querySelector('#words').innerHTML = Blaze.toHTML(Template.newform);
->>>>>>> stuff
+
   },
-  'click #signup': function(event,template){
+  'click #donate': function(event,template){
     event.preventDefault();
-    document.querySelector('#title').innerHTML = "Sign Up";
+    document.querySelector('#allProtests').style.display = "none";
+    document.querySelector('#title').innerHTML = "Donate";
     document.querySelector('main').style.background = "lightblue";
     document.querySelector('#words').innerHTML = "<p> Thank you for signing up to Resist Today </p>";
     document.querySelector('#title').style.cssText = CssTitle;
@@ -70,7 +102,6 @@ Template.body.events({
   },
   'submit .protests'(event, template) {
     event.preventDefault();
-    console.log('hi');
     var location = template.find('.location').value;
     var date = template.find('.date').value;
     var cause = template.find('.cause').value;
