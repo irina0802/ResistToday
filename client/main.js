@@ -39,7 +39,7 @@ Template.body.events({
     document.querySelector('#allProtests').style.display = "none";
   	document.querySelector('#title').innerHTML = "Find A Protest Near You";
   	document.querySelector('main').style.background = "purple";
-  	document.querySelector('#words').innerHTML = "<p>Select a borough:</p> <button id = 'brooklyn'>Brooklyn</button> <div id = 'brooklynProtest'></div> <button id='bronx'>Bronx</button> <div id='bronxProtest'> </div> <button id='manhattan'>Manhattan</button><div id='manhattanProtest'> </div> <button id='statenisland'>Staten Island</button><div id='siProtest'> </div> <button id='queens'>Queens</button> <div id = 'queensProtest'> </div>";
+  	document.querySelector('#words').innerHTML = "<p>Select a borough:</p> <button id = 'brooklyn' class = 'fancyButton'>Brooklyn</button> <div id = 'brooklynProtest'></div> <button id='bronx'  class = 'fancyButton'>Bronx</button> <div id='bronxProtest'> </div> <button  class = 'fancyButton' id='manhattan'>Manhattan</button><div id='manhattanProtest'> </div> <button id='statenisland'  class = 'fancyButton'>Staten Island</button><div id='siProtest'> </div> <button id='queens'  class = 'fancyButton'>Queens</button> <div id = 'queensProtest'> </div>";
   	document.querySelector('#title').style.cssText = CssTitle;
   	document.querySelector('#words').style.cssText = CssWords;
   	document.querySelector('main').style.opacity = 1;
