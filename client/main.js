@@ -1,10 +1,9 @@
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
-
 import './main.html';
 import { Accounts } from 'meteor/accounts-base';
-
 import { Protests } from '../imports/api/tasks.js'
+import { Meteor } from 'meteor/meteor';
 console.log(Protests)
 Accounts.ui.config({
   passwordSignupFields: 'USERNAME_ONLY',
@@ -22,6 +21,7 @@ Template.body.helpers({
 Template.body.events({
   'click #about': function(event, template){
   	event.preventDefault();
+    document.querySelector('#signedProtests').style.display = "none";
     document.querySelector('#allProtests').style.display = "none";
   	document.querySelector('#title').innerHTML = "About";
     document.querySelector('main').style.cssText= "background-color: none";
@@ -32,10 +32,10 @@ Template.body.events({
   	document.querySelector('#words').style.cssText = CssWords;
     document.querySelector('#words').style.css.Text= "font-size: 100px"
     document.querySelector('#words').style.cssText= " font-family: Tahoma, Geneva, sans-serif ";
-
   },
   'click #find': function(event, template){
   	event.preventDefault();
+    document.querySelector('#signedProtests').style.display = "none";
     document.querySelector('#allProtests').style.display = "none";
   	document.querySelector('#title').innerHTML = "Find A Protest Near You";
   	document.querySelector('main').style.background = "purple";
@@ -48,49 +48,52 @@ Template.body.events({
   	event.preventDefault();
     var brooklynProtests = document.querySelectorAll('.brooklyn');
     for (var protest of brooklynProtests) {
-      document.querySelector('#brooklynProtest').innerHTML += "<p>" + protest.innerHTML + "</p>";
+      document.querySelector('#brooklynProtest').innerHTML += "<p class = 'thisthing'>" + protest.innerHTML + "</p> <button class='participate'> Sign Up </button> </div>";
     }
   },
   'click #bronx': function(event,template){
     event.preventDefault();
     var bronxProtests = document.querySelectorAll('.bronx');
     for (var protest of bronxProtests) {
-      document.querySelector('#bronxProtest').innerHTML += "<p>" + protest.innerHTML + "</p>";
+      document.querySelector('#bronxProtest').innerHTML += "<p class = 'thisthing'>" + protest.innerHTML + "</p> <button class='participate'> Sign Up </button> </div>";
     }
   },
   'click #manhattan': function(event,template){
     event.preventDefault();
     var manhattanProtests = document.querySelectorAll('.manhattan');
     for (var protest of manhattanProtests) {
-      document.querySelector('#manhattanProtest').innerHTML += "<p>" + protest.innerHTML + "</p>";
+      document.querySelector('#manhattanProtest').innerHTML += "<div> <p class = 'thisthing'>" + protest.innerHTML + "</p> <button class='participate'> Sign Up </button> </div>";
     }
   },
   'click #queens': function(event,template){
     event.preventDefault();
     var queensProtests = document.querySelectorAll('.queens');
     for (var protest of queensProtests) {
-      document.querySelector('#queensProtest').innerHTML += "<p>" + protest.innerHTML + "</p>";
+      document.querySelector('#queensProtest').innerHTML += "<p class = 'thisthing'>" + protest.innerHTML + "</p> <button class='participate'> Sign Up </button> </div>";
     }
   },
   'click #statenisland': function(event,template){
     event.preventDefault();
     var siProtests = document.querySelectorAll('.statenisland');
     for (var protest of siProtests) {
-      document.querySelector('#siProtest').innerHTML += "<p>" + protest.innerHTML + "</p>";
+      document.querySelector('#siProtest').innerHTML += "<p class = 'thisthing'>" + protest.innerHTML + "</p> <button class='participate'> Sign Up </button> </div>";
     }
   },
   'click #organize': function(event,template){
   	event.preventDefault();
     console.log(template);
+    document.querySelector('#signedProtests').style.display = "none";
+    document.querySelector('#title').style.cssText = CssTitle;
+    document.querySelector('#words').style.cssText = CssWords;
     document.querySelector('#allProtests').style.display = "block";
   	document.querySelector('main').style.opacity = 1;
   	document.querySelector('#title').innerHTML = "Organize your protest";
   	document.querySelector('main').style.background ="white";
   	document.querySelector('#words').innerHTML = Blaze.toHTML(Template.newform);
-
   },
   'click #donate': function(event,template){
     event.preventDefault();
+    document.querySelector('#signedProtests').style.display = "none";
     document.querySelector('#allProtests').style.display = "none";
     document.querySelector('#title').innerHTML = "Donate";
     document.querySelector('main').style.background = "lightblue";
@@ -109,10 +112,30 @@ Template.body.events({
       location: location,
       date: date,
       cause: cause,
-    });
+      // attending: new Set(),
+    })
     },
-    'click .delete'() {
+  'click .delete'() {
     Protests.remove(this._id);
+  },
+  'click #account'(){
+    event.preventDefault();
+    document.querySelector('#signedProtests').style.display = "block";
+    document.querySelector('#signedProtests').style.margin = "30px";
+    document.querySelector('#allProtests').style.display = "none";
+    document.querySelector('#title').style.cssText = CssTitle;
+    document.querySelector('#words').style.cssText = CssWords;
+    document.querySelector('main').style.background = "lightblue";
+    document.querySelector('#title').innerHTML = "My Account";
+    document.querySelector('#words').innerHTML = "<p> Protests You've Signed Up For: </p> ";
+  },
+  'click .participate'(){
+    event.preventDefault();
+    var something  = document.querySelector('.thisthing').innerHTML;
+    document.querySelector('#signedProtests').innerHTML += '<p>' + something + '</p>';
+    //  Protests.update(this._id, {
+    //    $set: { attending: this.attending.add(Meteor.userId()) }
+    // })
   },
 });
 
